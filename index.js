@@ -54,7 +54,9 @@ function buildCustomMessage(title, body, link) {
         title,
         body,
       },
-      link
+      data: {
+        link
+      }
     },
   };
 }
