@@ -28,10 +28,10 @@ app.use(bodyParser.json());
 // Route for handling the POST request
 app.post('/api/sendFcmMessage', (req, res) => {
   // Extract title and body from the request body
-  const { title, body } = req.body;
+  const { title, body, link } = req.body;
 
   // Build a message with the provided title and body
-  const customMessage = buildCustomMessage(title, body);
+  const customMessage = buildCustomMessage(title, body, link);
 
   // Send the FCM message
   sendFcmMessage(customMessage);
@@ -46,7 +46,7 @@ app.listen(port, () => {
 });
 
 // Function to build a custom FCM message with the provided title and body
-function buildCustomMessage(title, body) {
+function buildCustomMessage(title, body, link) {
   return {
     message: {
       topic: 'news',
@@ -54,6 +54,7 @@ function buildCustomMessage(title, body) {
         title,
         body,
       },
+      link
     },
   };
 }
